@@ -1,0 +1,87 @@
+<!-- templates/chat/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <!-- Left Panel: Chat History -->
+    <div class="chat-sidebar">
+        <div class="sidebar-header">
+            <button id="new-chat" class="btn btn-primary">
+                <i class="fas fa-plus"></i> New Chat
+            </button>
+            <div class="task-selector">
+                <select id="chat-type">
+                    <option value="general">General Task</option>
+                    <option value="music">Music Query</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="chat-list">
+            {% for chat in chats %}
+            <div class="chat-item" data-chat-id="{{ chat.id }}">
+                <div class="chat-item-title">{{ chat.title }}</div>
+                <div class="chat-item-actions">
+                    <button class="rename-chat" title="Rename">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="delete-chat" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="sidebar-footer">
+            <button id="logout" class="btn btn-secondary">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+    
+    <!-- Right Panel: Chat Messages -->
+    <div class="chat-main">
+        <div class="chat-messages" id="messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        
+        <div class="chat-input">
+            <form id="message-form">
+                <div class="input-group">
+                    <textarea 
+                        id="message-input" 
+                        placeholder="Type your message..." 
+                        rows="1"
+                        autocomplete="off"
+                    ></textarea>
+                    <button type="submit" class="btn btn-send">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <button type="button" id="stop-generation" class="btn btn-stop" style="display: none;">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Rename Chat Modal -->
+<div id="rename-modal" class="modal">
+    <div class="modal-content">
+        <h3>Rename Chat</h3>
+        <input type="text" id="new-chat-title" placeholder="Enter new title">
+        <div class="modal-actions">
+            <button class="btn btn-secondary" id="cancel-rename">Cancel</button>
+            <button class="btn btn-primary" id="confirm-rename">Rename</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

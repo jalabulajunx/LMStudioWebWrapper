@@ -1,0 +1,38 @@
+graph TB
+    subgraph Client
+        UI[Web UI]
+        WS[WebSocket Client]
+    end
+
+    subgraph Server
+        FE[Flask Server]
+        Auth[Authentication Module]
+        SM[Session Manager]
+        WSH[WebSocket Handler]
+        CHM[Chat History Manager]
+        QP[Query Processor]
+        
+        subgraph LLM Integration
+            LMS[LM Studio Client]
+            SQL[SQL Generator]
+            RES[Response Formatter]
+        end
+        
+        subgraph Storage
+            DB[(SQLite Database)]
+            MDB[(Music Database)]
+        end
+    end
+
+    UI --> FE
+    UI <--> WS
+    WS <--> WSH
+    FE --> Auth
+    FE --> SM
+    WSH --> CHM
+    WSH --> QP
+    QP --> LMS
+    QP --> SQL
+    SQL --> MDB
+    LMS --> RES
+    CHM --> DB
