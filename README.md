@@ -2,6 +2,11 @@
 
 A web-based chat application that provides a multi-user interface for interacting with LM Studio's local LLMs. This application supports both general conversations and specialized music database queries, with real-time streaming responses and session management.
 
+## Note
+- The entire source code was written with Claude.ai
+- I used an extensive prompting to get the desired output
+- This is work-in-progress
+
 ## Features
 
 ### Core Functionality
