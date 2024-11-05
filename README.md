@@ -7,6 +7,62 @@ A web-based chat application that provides a multi-user interface for interactin
 - I used an extensive prompting to get the desired output
 - This is work-in-progress
 
+<details>
+  <summary>The Prompt</summary>
+I have an idea of developing a web chat application sitting on top of LM Stuido SDK. I hope you are familiar with it. This application would be for my family to use the local LLMs instead of the publicly available ones. The LM Studio Server is housed within ArchLinux. This web application would be deployed on the same server. 
+
+The web application should be with the following stack:
+	1. Python
+	2. JavaScript/jQuery
+	3. HTML
+	4. CSS
+	
+Architectural considerations:
+	1. Modular - each piece of feature should be its own file
+	2. Comments - every function, class and file should be well documented
+	3. Maintenance - the code generated should be maintainable
+	4. Follow good architectural and coding practices
+	5. Should be performant
+	6. You'll write unit tests and validate if your code works
+	
+Deployment considerations:
+	1. ArhcLinux OS
+	2. Home network
+	3. Will run as a service - systemd
+	4. You'll inform me what additional packages need to be installed to run this chat program
+	5. You'll tell me how to test it without running as a service
+	
+The requirements:
+	1. Users are to be authenticated and thus can logout of their sessions
+	2. Users will have their own sessions
+	3. Users will not see other users or other users' chats
+	4. Users can see their past chat history from previous sessions
+	5. Users can modify/rename or delete their past chat titles
+	6. Modifying chat titles should not reorder past chat conversations
+	7. Users can ask any questions - small or larger in text size
+	8. Users can stop from the response being generated
+	9. Users would see streaming response from server
+	10. Users will option to use a "general task" and another task that would allow them to ask questions about a specific database
+		a. That specific database is Music database fed by either a spreadsheet or sqlLite
+		b. Their normal questions should be converted to Select statements by a query out to LM Studio
+		c. The response statement should be validated if it is a properly formed SQL query
+		d. That SQL query should be executed and the results are to be sent to LM Studio for it to be converted to a response that end user can understand instead of a bunch of columns and rows. For instance, if the user submits a query "Find me all the albums whose composer is A. R. Rahman", then the LM Studio should then produce a SQL statement as "Select album from <DATABASE TABLE> Where albumartist like %rahman%" - it should be case insensitive retrieval. The result is to be fed again to LM Studio to be formulated as a response like "A. R. Rahman was the composer of several albums such as <Albums from SQL Query>"
+		
+Design considerations:
+	1. UI should be two-paneled layout
+		a. Left pane: chat history; right pane: chat conversations
+	2. Intuitive UI placements for:
+		a. Rename/Delete for each conversation thread
+		b. Create new conversation
+		c. Send chat
+		d. Stop chat
+		e. Tasks: General and Music Queries
+		f. Logout
+		g. Responsive on different screens and resolution
+		h. Good colour variations on the entire application
+	3. Will be used by all ages
+</details>
+
 ## Features
 
 ### Core Functionality
